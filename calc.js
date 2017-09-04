@@ -91,12 +91,23 @@ testMyself();
 
 
 
-/*计算器，用JavaScript 做四则运算（加减乘除法）*/
+
+//点击事件处理函数
 function message() {
-    var str = document.getElementById("incomingMessage").value;
-    document.getElementById("displayResults").value = calc(str);
+    try {
+        var str = document.getElementById("incomingMessage").value;
+        document.getElementById("displayResults").value = calc(str);
+    }
+    catch(err) // 捕获成功，捕获的信息名称为err
+    {
+        document.getElementById("displayResults").value = err;
+    }
 }
 
+/*用途：计算算式（加减乘除法）
+ 参数：str 需要计算的算式；
+ 返回值：正确结果；
+ 异常情况：会抛出异常，异常值时错误原因。*/
 function calc(str){
     var first= 0;
     var second= 0;
@@ -109,7 +120,7 @@ function calc(str){
         else if(str[i]=='+'){
             y= i;
             oper= 0;
-            break;  //break 指条件不满直接退出for循环；而continue 指跳到for循环条件判断，而if{里面的信息}和else{}以下不执行下去。
+            break;
         }
         else if(str[i]=='-'){
             y= i;
